@@ -1,0 +1,45 @@
+////// EXO /////// creer des tables et les relier entres elles
+
+CREATE TABLE categories (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255)
+) ENGINE=INNODB, DEFAULT CHARACTER SET = 'utf8';
+
+CREATE TABLE brands (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255)
+) ENGINE=INNODB, DEFAULT CHARACTER SET = 'utf8';
+
+CREATE TABLE sellers (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+last_name VARCHAR(255),
+first_name VARCHAR (255),
+email VARCHAR (127),
+phone_number VARCHAR(10),
+location VARCHAR (255)  
+) ENGINE=INNODB, DEFAULT CHARACTER SET = 'utf8';
+
+CREATE TABLE models (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(10),
+brand_id INT(11),
+category_id INT(11),
+FOREIGN KEY (brand_id) REFERENCES brands(id),
+FOREIGN KEY (category_id) REFERENCES categories(id)
+
+) ENGINE=INNODB DEFAULT CHARACTER SET = 'utf8';
+
+CREATE TABLE listings (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+creation_year DATE,
+km INT(11),
+price INT(11),
+description TEXT,
+title VARCHAR(255),
+publish_at DATETIME,
+model_id INT(11),
+seller_id INT(11),
+FOREIGN KEY (model_id) REFERENCES models(id),
+FOREIGN KEY (seller_id) REFERENCES sellers(id)
+
+) ENGINE=INNODB DEFAULT CHARACTER SET = 'utf8';

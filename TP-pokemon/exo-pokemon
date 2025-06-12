@@ -1,16 +1,16 @@
 ### 1. Afficher le nom des pokémons n’étant pas la forme par défaut (colonne is_default)
 
-SELECT * FROM `pokemon` WHERE NOT is_default;
+SELECT \* FROM `pokemon` WHERE NOT is_default;
 
 ### 2. Afficher la moyenne de chaque statistique pour tous les pokemons (hp, atk, def, spa, spd et spe)
 
 SELECT
-    AVG(hp) 'Moyenne HP',
-    AVG(atk) 'Moyenne attaque',
-    AVG(def) 'Moyenne défense',
-    AVG(spa) 'Moyenne attaque spéciale',
-    AVG(spd) 'Moyenne défense spéciale',
-    AVG(spe) 'Moyenne vitesse'
+AVG(hp) 'Moyenne HP',
+AVG(atk) 'Moyenne attaque',
+AVG(def) 'Moyenne défense',
+AVG(spa) 'Moyenne attaque spéciale',
+AVG(spd) 'Moyenne défense spéciale',
+AVG(spe) 'Moyenne vitesse'
 FROM `pokemon`;
 
 ### 3. Afficher le pokémon le plus lourd
@@ -38,8 +38,8 @@ SELECT name FROM `pokemon` WHERE atk > 150;
 ### 7. Afficher la somme des statistiques avec le nom du pokémon lié
 
 SELECT
-	name,
-	(hp + atk + def + spa + spd + spe) 'Somme stats'
+name,
+(hp + atk + def + spa + spd + spe) 'Somme stats'
 FROM `pokemon`
 WHERE name LIKE 'Caratroc';
 
@@ -66,20 +66,21 @@ SELECT name FROM pokemon ORDER BY LENGTH(name) DESC LIMIT 1;
 ### 13. Afficher le pokémon ayant la somme de statistique (hp, atk, def, spa, spd, spe) la plus élevée
 
 SELECT
-	name,
-    (hp + atk + def + spa + spd + spe) "base_stats"
-    FROM pokemon
-    ORDER BY "base_stats" DESC LIMIT 1;
+name,
+(hp + atk + def + spa + spd + spe) "base_stats"
+FROM pokemon
+ORDER BY "base_stats" DESC LIMIT 1;
 
 ### 14. Afficher le pokémon le plus facile à monter de niveau (base_experience la plus basse)
 
 SELECT name FROM pokemon ORDER BY base_experience LIMIT 1;
 
 ### 15. Afficher le pokémon ayant le rapport « efficace » pour chaque pokémon
-#### Rapport efficace : (somme des statistiques / base_experience) * 100, arrondie à 2 après la virgule et avec un % à la fin)
+
+#### Rapport efficace : (somme des statistiques / base_experience) \* 100, arrondie à 2 après la virgule et avec un % à la fin)
 
 SELECT
-	name,
-    (hp + atk + def + spa + spd + spe) "base_stats",
-    ROUND((hp + atk + def + spa + spd + spe) / base_experience * 100, 2) "rapport_efficace"
+name,
+(hp + atk + def + spa + spd + spe) "base_stats",
+ROUND((hp + atk + def + spa + spd + spe) / base_experience \* 100, 2) "rapport_efficace"
 FROM pokemon;
